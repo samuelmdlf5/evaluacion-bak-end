@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>seleccion sala</title>
+  </head>
+  <body>
+    <h2>Reservar una Sala</h2>
+    {% for s in salas %}
+    <p>
+      {{ s.NombreS }} – capacidad {{ s.CapacidadM }} ({{ s.cupos_ocupados }}
+      ocupados,
+      <strong>{{ s.CapacidadM|add:s.cupos_ocupados|add:"-1" }} libres</strong>)
+      {% if s.Disponibilidad %}
+      <a href="{% url 'reserva' s.id %}">Reservar</a>
+      {% else %}
+      <span style="color: red">Sala llena</span>
+      {% endif %}
+    </p>
+    {% endfor %}
+  </body>
+</html>

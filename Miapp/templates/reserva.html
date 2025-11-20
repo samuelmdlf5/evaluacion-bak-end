@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Reservar</title>
+  </head>
+  <body>
+    <h1>Reservar: {{ sala.NombreS }}</h1>
+    <p>
+      {{ ocupados }} / {{ sala.CapacidadM }} cupos ocupados –
+      <strong>{{ libres }} libres</strong>
+    </p>
+
+    {% if libres <= 0 %}
+    <p style="color: red">Sala llena en este momento.</p>
+    <a href="{% url 'salas' %}">Volver</a>
+    {% else %}
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">Reservar</button>
+    </form>
+    <a href="{% url 'salas' %}">Volver</a>
+    {% endif %}
+  </body>
+</html>

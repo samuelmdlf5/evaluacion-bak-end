@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <h1>Panel</h1>
+
+    {% for tipo in "sala,estudiante,reserva"|split:"," %} {% with
+    acciones="crear,editar,eliminar"|split:"," %} {% for act in acciones %}
+    <h2>{{ act|title }} {{ tipo|title }}</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="{{ act }}_{{ tipo }}" />
+      {% if act != "crear" %}
+      <select name="{{ tipo }}_id" required>
+        {% for item in tipo|add:"s" %}
+        <option value="{{ item.id }}">
+          {% if tipo == "sala" %}{{ item.NombreS }} {% elif tipo == "estudiante"
+          %}{{ item.NombreE }} {{ item.ApellidoE }} {% else %}{{
+          item.Estudiante.NombreE }} – {{ item.Sala.NombreS }} – {{
+          item.FechaHI|date:"Y-m-d H:i" }} {% endif %}
+        </option>
+        {% endfor %}
+      </select>
+      {% endif %} {% if act != "eliminar" %} {% if tipo == "sala" %}
+      <input placeholder="Nombre" name="nombre_{{ tipo }}" required />
+      <input placeholder="Capacidad" type="number" name="capacidad" required />
+      {% elif tipo == "estudiante" %}
+      <input placeholder="RUT" name="rut" required />
+      <input placeholder="Nombre" name="nombre" required />
+      <input placeholder="Apellido" name="apellido" required />
+      {% else %}
+      <select name="estudiante" required>
+        {% for e in estudiantes %}
+        <option value="{{ e.id }}">{{ e.NombreE }} {{ e.ApellidoE }}</option>
+        {% endfor %}
+      </select>
+      <select name="sala" required>
+        {% for s in salas %}
+        <option value="{{ s.id }}">{{ s.NombreS }}</option>
+        {% endfor %}
+      </select>
+      <input type="datetime-local" name="fecha_hi" required />
+      <input type="datetime-local" name="fecha_ht" required />
+      {% endif %} {% endif %}
+      <button type="submit">{{ act|title }}</button>
+    </form>
+    {% endfor %} {% endwith %} {% endfor %}
+  </body>
+</html>
