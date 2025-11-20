@@ -1,0 +1,87 @@
+# =======  ARCHIVOS SENSIBLES (pierdes 5 puntos si suben)  =======
+.env
+*.env
+.env.*
+!.env.example
+secrets/
+config/settings/production.py
+miweb/settings/production.py
+db.sqlite3
+*.db
+*.sqlite
+*.sqlite3-journal
+
+# =======  ENTORNOS VIRTUALES (pierdes 5 puntos si suben)  =======
+venv/
+env/
+.venv/
+virtualenv/
+ENV/
+env.bak/
+venv.bak/
+pip-selfcheck.json
+
+# =======  BYTECODE / CACHÉ (no aporta nada al repo)  =======
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+parts/
+bin/
+develop-eggs/
+wheels/
+*.wheel
+.installed.cfg
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+local_settings.py
+
+# =======  ORACLE CLIENT (si lo descomprimiste dentro del repo)  =======
+instantclient_*/
+oracle-instantclient*/
+
+# =======  IDEs / EDITORES  =======
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# =======  OS  =======
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# =======  MEDIA / STATIC RECOPILADOS (se regeneran)  =======
+media/
+staticfiles/
+static/
+!static/.gitkeep
+
